@@ -7,8 +7,8 @@
         "tappd:run": "sudo docker run --rm -p 8090:8090 phalanetwork/tappd-simulator:latest",
         "port:kill": "sudo fuser -k 3000/tcp",
         "docker:build": "sudo docker build --no-cache --target dev -t based-agent-test:latest .",
-        "docker:run": "sudo docker run --rm -p 3000:3000 based-agent-test:latest",
-        "docker:image": "sudo docker build --no-cache --target prod -t based-agent-test:latest -t based-agent-test:latest .",
+        "docker:run": "sudo docker run --rm -p 3000:3000 my-nextjs-app:latest",
+        "docker:image": "sudo docker build --no-cache --target prod -t listerewan/based-agent-test:latest .",
         "docker:push": "sudo docker push listerewan/based-agent-test",
         "docker:prune": "sudo docker system prune"
     },

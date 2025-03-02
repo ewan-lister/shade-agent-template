@@ -1,5 +1,11 @@
 # Shade Agents
 
+## This is an edited version of a Shade Agent template, incorporating functionality for querying an LLM.
+
+In order to run locally follow steps below for local development.
+
+To run llm via python server use `python llm_server.py` (with python dependencies installed)
+
 ## Shade Agent Template
 
 This is a monorepo template for the Shade Agent Stack with all the code and tools for deploying a Shade Agent on NEAR and Phala Cloud.

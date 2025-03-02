@@ -17,21 +17,25 @@ export default function Home() {
 
     const queryLLM = async () => {
         setMessage('Querying LLM...');
-
+    
         try {
             const res = await fetch('/api/llmQuery', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ prompt }),
             });
-
+    
             const data = await res.json();
-            setLlmResponse(data.response || 'No response');
+            if (res.ok) {
+                setLlmResponse(data.response || 'No response');
+            } else {
+                setLlmResponse('Error querying LLM: ' + data.error);
+            }
         } catch (e) {
             console.error('LLM Query Error:', e);
             setLlmResponse('Error querying LLM.');
         }
-
+    
         setMessage('');
     };
 
