@@ -6,6 +6,8 @@ In order to run locally follow steps below for local development.
 
 To run llm via python server use `python llm_server.py` (with python dependencies installed)
 
+Port 3000 should open with simple front end at the same time as llm server through port 5000.
+
 ## Shade Agent Template
 
 This is a monorepo template for the Shade Agent Stack with all the code and tools for deploying a Shade Agent on NEAR and Phala Cloud.
