@@ -12,6 +12,29 @@ export default function Home() {
     const [accountId, setAccountId] = useState();
     const [balance, setBalance] = useState({ available: '0' });
 
+    const [prompt, setPrompt] = useState('');
+    const [llmResponse, setLlmResponse] = useState('');
+
+    const queryLLM = async () => {
+        setMessage('Querying LLM...');
+
+        try {
+            const res = await fetch('/api/llmQuery', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ prompt }),
+            });
+
+            const data = await res.json();
+            setLlmResponse(data.response || 'No response');
+        } catch (e) {
+            console.error('LLM Query Error:', e);
+            setLlmResponse('Error querying LLM.');
+        }
+
+        setMessage('');
+    };
+
     const setMessageHide = async (message, dur = 3000) => {
         setMessage(message);
         await sleep(dur);
@@ -65,6 +88,21 @@ export default function Home() {
                     </li>
                     <li>Follow the steps below to verify your app.</li>
                 </ol>
+
+                {/* LLM Query Section */}
+                <div className={styles.card}>
+                    <h3>Query LLM</h3>
+                    <input
+                        type="text"
+                        className={styles.input}
+                        placeholder="Enter your prompt..."
+                        value={prompt}
+                        onChange={(e) => setPrompt(e.target.value)}
+                    />
+                    <button className={styles.btn} onClick={queryLLM}>Send</button>
+                    {llmResponse && <p className={styles.code}>Response: {llmResponse}</p>}
+                </div>
+                
                 <div className={styles.grid}>
                     <div className={styles.card}>
                         <h3>Step 1.</h3>
